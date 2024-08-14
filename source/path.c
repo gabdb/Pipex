@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:52:11 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/13 23:36:10 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:16:26 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ char	*find_path(char *env[])
 			return (*(env + i) + 5); //addresse du string PATH=... + 5 pr skipper `PATH=`
 		i++;
 	}
-	return (write(1, "bug, variable 'PATH' pas trouvée\n", 33), NULL);
+	return (perror("problem: PATH env' variable not found !\n"), NULL);
 }
 
-//yaura des leaks smr ici ! mm ft_split est suspect
-char	*find_full_command(char *cmd, char *env[])
+//returns correct path for a command
+char	*find_path_command(char *cmd, char *env[])
 {
 	int		i;
 	char	*path; //(PATH=)... : ... : ...
@@ -44,15 +44,15 @@ char	*find_full_command(char *cmd, char *env[])
 		check = ft_strjoin(split_path[i], command);
 		if (access(check, X_OK) == 0)
 		{
-			//free_split
+			free(check);
+			check = ft_strdup(split_path[i]); // used to return the correct path
+			free_split(split_path);
 			free(command);
 			return (check);
 		}
 		else
-		{
 			free(check);
-			i++;
-		}
+		i++;
 	}
-	return (NULL); //commande nexiste pas -> free tout, perror and exit !
+	return (free_split(split_path), free(command), NULL); //commande nexiste pas -> free tout, perror and exit !
 }

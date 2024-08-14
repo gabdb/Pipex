@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:33:03 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/13 23:35:02 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:38:19 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	parsing(int ac, char *av[], char *env[])
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
+	write(1, "files are OK !\n", 15);
 }

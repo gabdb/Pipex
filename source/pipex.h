@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:24:00 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/13 23:34:18 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:54:46 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ void	parsing(int ac, char *av[], char *env[]);
 
 // PATH
 char	*find_path(char *env[]);
-char	*find_full_command(char *cmd, char *env[]);
+char	*find_path_command(char *cmd, char *env[]);
+
+// SUPPORT F
+void	free_split(char **mem);
+void	error_exit(void);
+void	free_paths(char *path1, char *path2);
+void	open_error(void);
+void	dup2_error(void);
