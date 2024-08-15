@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/15 17:58:03 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/15 22:22:39 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int main(int ac, char *av[], char *env[])
 		return (free_split(args_cmd1), free_split(args_cmd2), write(1, "error fork\n", 11), 1);
 	if (0 == pid)
 		handle_first_cmd(av, args_cmd1, pipe_fd, env);
+	wait(NULL);
 	//write(1, "first command exec SUCCES !\n", 28);
 	pid = fork();
 	if (pid != 0)
@@ -106,6 +107,7 @@ int main(int ac, char *av[], char *env[])
 		return (free_split(args_cmd1), free_split(args_cmd2), write(1, "error fork\n", 11), 1);
 	if (0 == pid)
 		handle_sec_cmd(av, args_cmd2, pipe_fd, env);
+	wait(NULL);
 	free_split(args_cmd1);
 	free_split(args_cmd2);
 	return (0);
