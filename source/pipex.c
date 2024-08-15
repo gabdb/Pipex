@@ -6,14 +6,15 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/14 20:10:43 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:16:46 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//jpense que le code aura un problème si la commande a un flag, genre "ls -l"
-//find_full_path va sans doute buger, à vérifier
+//problème avec filesdans terminal: faudra strjoin("source/", infile)
+
+//problème si la commande a un flag, genre "ls -l"
 
 //encore le problème de créer le *cmd_arg[] pour execve
 
@@ -57,6 +58,8 @@ int main(int ac, char *av[], char *env[])
 	parsing(ac, av, env);
 	path1 = find_path_command(av[2], env);
 	path2 = find_path_command(av[3], env);
+	printf("path1: %s, path2: %s", path1, path2);
+	exit(0);
 	if (NULL == path1 || NULL == path2)
 		error_exit();
 	if (pipe(pipe_fd) == -1)
