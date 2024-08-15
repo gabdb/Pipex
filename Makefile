@@ -11,7 +11,7 @@ RM = rm -rf
 SRCS =	source/parse.c \
 		source/path.c	\
 		source/pipex.c	\
-		source/free_exit.c	\
+		source/free_error.c	\
 		source/support_funct.c	\
 
 OBJS = $(SRCS:.c=.o)

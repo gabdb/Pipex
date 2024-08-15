@@ -1,0 +1,4 @@
+file qui sert d'input pour la 1e commande.
+le outfile sera lui créé s'il n'existe pas encore.
+test
+voila
