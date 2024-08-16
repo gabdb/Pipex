@@ -1,4 +1,9 @@
-file qui sert d'input pour la 1e commande.
-le outfile sera lui créé s'il n'existe pas encore.
-test
-voila
+Z: file qui sert d'input pour la 1e commande.
+A: le outfile sera lui créé s'il n'existe pas encore.
+X: ici ya un 'word'.
+B: word ici aussi.
+Z: file qui sert d'input pour la 1e commande.
+H: voila
+foo foo foo
+ici foo mais avec bar
+ceci doit etre 2e et derniere dans outfile, foo

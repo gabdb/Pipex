@@ -6,26 +6,12 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/15 22:22:39 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:17:59 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-/* //jcrois inutile finalement cette fonction
-char	*create_full_path(char *path, char *cmd)
-{
-	char	*result;
-	char	*temp;
 
-	temp = ft_strjoin(path, "/");
-	if (!temp)
-		exit(EXIT_FAILURE);
-	result = ft_strjoin(temp, cmd);
-	if (!result)
-		exit(EXIT_FAILURE);
-	return (result);
-}
-*/
 void	handle_first_cmd(char **av, char **cmd_args, int *pipe_fd, char **env)
 {
 	int		infile_fd;
@@ -85,7 +71,6 @@ int main(int ac, char *av[], char *env[])
 	parsing(ac, av, env);
 	args_cmd1 = find_path_command(av[2], env);
 	args_cmd2 = find_path_command(av[3], env);
-	//printf("\npath1: %s, path2: %s", args_cmd1[0], args_cmd2[0]);
 	if (NULL == args_cmd1 || NULL == args_cmd2)
 		error_exit();
 	if (pipe(pipe_fd) == -1)
@@ -96,7 +81,6 @@ int main(int ac, char *av[], char *env[])
 	if (0 == pid)
 		handle_first_cmd(av, args_cmd1, pipe_fd, env);
 	wait(NULL);
-	//write(1, "first command exec SUCCES !\n", 28);
 	pid = fork();
 	if (pid != 0)
 	{

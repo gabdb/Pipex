@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:33:03 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/15 17:57:47 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:12:33 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,5 @@ void	parsing(int ac, char *av[], char *env[])
 		perror("file2 cannot be opened nor created !");
 		exit(EXIT_FAILURE);
 	}
-	//else
-	//	write(1, "outfile opened succesfully in parse.c \n", 39);
 	close(fd);
-	//write(1, "files are OK !\n", 15);
 }
