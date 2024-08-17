@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:49:26 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/04/22 16:35:18 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:10:13 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int) sign * res);
 }
-
-
-int main(void)
-{
-	const char string[] = " \t	\r +123456{ }|098juik  ";
-	int result = ft_atoi(string);
-
-	printf("Mon atoi : %d\nLe vrai atoi : %d", result, atoi(string));
-
-	return 0;
-}
-

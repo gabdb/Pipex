@@ -6,11 +6,23 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:33:03 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/16 19:12:33 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:13:59 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	multi_free_split(char **a, char **b)
+{
+	free_split(a);
+	free_split(b);
+}
+
+void	close_fds(int *fd)
+{
+	close(fd[0]);
+	close(fd[1]);
+}
 
 //p-e en faire un char * qui ré-envoi le résultat de find_full_path
 void	parsing(int ac, char *av[], char *env[])
@@ -34,4 +46,17 @@ void	parsing(int ac, char *av[], char *env[])
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
+}
+
+char	*safe_strdup(char *s)
+{
+	char	*result;
+
+	result = ft_strdup(s);
+	if (!result)
+	{
+		perror("malloc failed in strdup\n");
+		exit(EXIT_FAILURE);
+	}
+	return (result);
 }
