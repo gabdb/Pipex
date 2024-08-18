@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:24:00 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/17 18:14:27 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:03:27 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	error_exit(void);
 void	free_paths(char *path1, char *path2);
 void	open_error(void);
 void	dup2_error(void);
+
+// SPECIAL HANDLE QUOTE
+void	handle_quotes(char *cmd);
 
 #endif

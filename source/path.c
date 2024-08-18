@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:52:11 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/17 18:14:42 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:07:55 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ char	**split_command(char *cmd)
 		perror("strjoin failed\n");
 		exit(EXIT_FAILURE);
 	}
+	printf("%s\n", command);
+	handle_quotes(command);
+	printf("%s\n", command);
 	result = ft_split(command, ' ');
 	if (!result)
 	{

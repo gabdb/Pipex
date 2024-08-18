@@ -9,9 +9,10 @@ CFLAGS = -Werror -Wall -Wextra
 RM = rm -rf
 
 SRCS =	source/parse.c \
-		source/path.c	\
-		source/pipex.c	\
-		source/free_error.c	\
+		source/path.c \
+		source/pipex.c \
+		source/free_error.c \
+		source/handle_quotes.c \
 
 OBJS = $(SRCS:.c=.o)
 
