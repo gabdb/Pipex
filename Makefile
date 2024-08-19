@@ -25,7 +25,7 @@ $(LIBFT) :
 	@make -C libft
 
 %.o : %.c
-	@$(CC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 fclean : clean
 	@make fclean -C libft

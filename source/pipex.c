@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/17 18:18:44 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:07:15 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	main(int ac, char *av[], char *env[])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
 	if (0 == v.pid)
 		handle_first_cmd(av, v.args_cmd1, v.pipe_fd, env);
-	wait(NULL);
 	v.pid = fork();
 	if (v.pid != 0)
 		close_fds(v.pipe_fd);
@@ -83,7 +82,6 @@ int	main(int ac, char *av[], char *env[])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
 	if (0 == v.pid)
 		handle_sec_cmd(av, v.args_cmd2, v.pipe_fd, env);
-	wait(NULL);
 	multi_free_split(v.args_cmd1, v.args_cmd2);
 	return (0);
 }

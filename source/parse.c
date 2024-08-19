@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:33:03 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/19 14:15:56 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:30:10 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	parsing(int ac, char *av[], char *env[])
 {
 	int	fd;
 
+	(void)env;
 	if (5 != ac)
 	{
 		perror("wrong number of arguments !");
