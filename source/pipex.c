@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/19 17:07:15 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:12:15 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int ac, char *av[], char *env[])
 {
 	t_main_var	v;
 
+	pid_t	pid[2];
 	parsing(ac, av, env);
 	v.args_cmd1 = find_path_command(av[2], env);
 	v.args_cmd2 = find_path_command(av[3], env);
@@ -70,18 +71,24 @@ int	main(int ac, char *av[], char *env[])
 		error_exit();
 	if (pipe(v.pipe_fd) == -1)
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	v.pid = fork();
-	if (-1 == v.pid)
+	pid[0] = fork();
+	if (-1 == pid[0])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	if (0 == v.pid)
+	if (0 == pid[0])
 		handle_first_cmd(av, v.args_cmd1, v.pipe_fd, env);
-	v.pid = fork();
-	if (v.pid != 0)
+	pid[1] = fork();
+	if (pid[1] != 0)
 		close_fds(v.pipe_fd);
-	if (-1 == v.pid)
+	if (-1 == pid[1])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	if (0 == v.pid)
+	if (0 == pid[1])
 		handle_sec_cmd(av, v.args_cmd2, v.pipe_fd, env);
+	int i = 1;
+	while (i >= 0)
+	{
+		waitpid(pid[i], NULL, 0);
+		i--;
+	}
 	multi_free_split(v.args_cmd1, v.args_cmd2);
 	return (0);
 }
