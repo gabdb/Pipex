@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:33:03 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/17 18:13:59 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:15:56 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	close_fds(int *fd)
 	close(fd[1]);
 }
 
-//p-e en faire un char * qui ré-envoi le résultat de find_full_path
 void	parsing(int ac, char *av[], char *env[])
 {
 	int	fd;
