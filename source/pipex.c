@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:19:45 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/19 17:12:15 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:22:35 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,22 @@ void	handle_sec_cmd(char **av, char **cmd_args, int *pipe_fd, char **env)
 	}
 }
 
+void	special_wait(t_main_var *v)
+{
+	int	i;
+
+	i = 1;
+	while (i >= 0)
+	{
+		waitpid(v->pid[i], NULL, 0);
+		i--;
+	}
+}
+
 int	main(int ac, char *av[], char *env[])
 {
 	t_main_var	v;
 
-	pid_t	pid[2];
 	parsing(ac, av, env);
 	v.args_cmd1 = find_path_command(av[2], env);
 	v.args_cmd2 = find_path_command(av[3], env);
@@ -71,24 +82,19 @@ int	main(int ac, char *av[], char *env[])
 		error_exit();
 	if (pipe(v.pipe_fd) == -1)
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	pid[0] = fork();
-	if (-1 == pid[0])
+	v.pid[0] = fork();
+	if (-1 == v.pid[0])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	if (0 == pid[0])
+	if (0 == v.pid[0])
 		handle_first_cmd(av, v.args_cmd1, v.pipe_fd, env);
-	pid[1] = fork();
-	if (pid[1] != 0)
+	v.pid[1] = fork();
+	if (v.pid[1] != 0)
 		close_fds(v.pipe_fd);
-	if (-1 == pid[1])
+	if (-1 == v.pid[1])
 		return (multi_free_split(v.args_cmd1, v.args_cmd2), 1);
-	if (0 == pid[1])
+	if (0 == v.pid[1])
 		handle_sec_cmd(av, v.args_cmd2, v.pipe_fd, env);
-	int i = 1;
-	while (i >= 0)
-	{
-		waitpid(pid[i], NULL, 0);
-		i--;
-	}
+	special_wait(&v);
 	multi_free_split(v.args_cmd1, v.args_cmd2);
 	return (0);
 }

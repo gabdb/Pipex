@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:24:00 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/18 18:03:27 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:14:23 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 
 typedef struct s_main_var
 {
-	int		pid;
 	int		pipe_fd[2];
 	char	**args_cmd1;
 	char	**args_cmd2;
+	pid_t	pid[2];
 }				t_main_var;
 
 // PARSE

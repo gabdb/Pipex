@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:52:11 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/08/19 16:31:38 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:09:37 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*find_paths(char *env[])
 			return (*(env + i) + 5);
 		i++;
 	}
-	perror("variable path not found");
+	perror("error: env variable PATH not found");
 	exit(EXIT_FAILURE);
 	return (NULL);
 }
