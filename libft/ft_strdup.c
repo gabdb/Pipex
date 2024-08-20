@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:56:27 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/04/22 13:17:14 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:01:42 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *str)
 	int		i;
 	char	*ptr;
 
+	if (!str)
+		return (NULL);
 	len = ft_strlen(str);
 	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ptr)
