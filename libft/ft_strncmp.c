@@ -6,7 +6,7 @@
 /*   By: gnyssens <gnyssens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:56:36 by gnyssens          #+#    #+#             */
-/*   Updated: 2024/04/15 18:37:55 by gnyssens         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:50:01 by gnyssens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	unsigned char	*s2;
 	size_t			i;
 
+	if (!str1 || !str2)
+		return (0);
 	if (n == 0)
 		return (0);
 	s1 = (unsigned char *)str1;
